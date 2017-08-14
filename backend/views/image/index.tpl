@@ -1,21 +1,14 @@
-<div class="page-title">
-  <div class="title_left">
-    <h3> Media Gallery <small> gallery design</small> </h3>
-  </div>
-</div>
 
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Media Gallery <small> gallery design </small></h2>
+        <h2>Media Gallery</h2>
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
         <div class="row" id="items">
-        	
-        	
 
         </div>
 
@@ -32,9 +25,9 @@
 {registerJs}
 <!-- inline scripts related to this page -->
 {literal}
-$(document).ready(function(){
 	var paging = new AjaxPaging({
 		auto_first_load: true,
+    request_url: '{/literal}{$links.ajax_load}{literal}',
 	});
 	$('#load_more').on('click', function(){
 		paging.load();
@@ -60,6 +53,13 @@ $(document).ready(function(){
       },
     });
   });
-})
+
+  // Copy
+  $("#items").on('click', 'a.copy', function(e){
+    e.preventDefault();
+    var _url = $(this).attr('href');
+    copyToClipboard(_url);
+  });
+
 {/literal}
 {/registerJs}
